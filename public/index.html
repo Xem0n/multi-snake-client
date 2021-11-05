@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Snake</title>
+
     <script src="bundle.js" defer></script>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/loading.css">
+    <link rel="stylesheet" href="styles/config.css">
+    <link rel="stylesheet" href="styles/game.css">
 </head>
 <body>
     <noscript>Turn on javascript to play the game</noscript>
+
+    <div class="container">
+        <div class="loading"><div></div><div></div><div></div></div>
+
+        <div class="config">
+            <input type="text" class="ip" placeholder="IP Address" minlength="1" maxlength="15">
+            <input type="text" class="port" placeholder="Port (Default: 4002)" minlength="1">
+
+            <input type="submit" value="Play">
+        </div>
+
+        <div class="game">
+            <canvas></canvas>
+        </div>
+    </div>
 </body>
 </html>
