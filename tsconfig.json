@@ -3,10 +3,8 @@
     "outDir": "./public/",
     "noImplicitAny": true,
     "module": "es6",
-    "target": "es5",
+    "target": "es6",
     "allowJs": true,
-    "moduleResolution": "node"
-  }
     "moduleResolution": "node",
     "baseUrl": "src"
   },
