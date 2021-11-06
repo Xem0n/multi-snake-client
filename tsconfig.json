@@ -7,4 +7,10 @@
     "allowJs": true,
     "moduleResolution": "node"
   }
+    "moduleResolution": "node",
+    "baseUrl": "src"
+  },
+  "include": [
+    "src"
+  ]
 }
