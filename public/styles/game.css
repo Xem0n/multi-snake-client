@@ -6,6 +6,6 @@ snake-game {
     display: none;
 }
 
-/* snake-game > canvas {
+snake-game > canvas {
     background: #fff;
-} */
+}
