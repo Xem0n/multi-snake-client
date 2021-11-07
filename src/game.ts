@@ -1,5 +1,3 @@
-import './game.css';
-
 class Game extends HTMLElement {
     start(ip: string, port: number): void {
 

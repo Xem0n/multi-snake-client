@@ -1,5 +1,4 @@
-import Game from 'game/game';
-import './config.css';
+import Game from './game';
 
 const DEFAULT_PORT = 4002;
 const IP_VALIDATION_REGEX = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;

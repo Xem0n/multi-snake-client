@@ -1,2 +1,2 @@
-import './config/config'; 
-import './game/game';
+import './config'; 
+import './game';
