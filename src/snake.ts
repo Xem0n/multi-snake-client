@@ -19,6 +19,7 @@ class Snake implements Drawable {
     private setupPositions(): void {
         this.positions = [];
 
+        // temporary starting pos
         let x = 10;
         let y = 500;
 
