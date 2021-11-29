@@ -60,7 +60,7 @@ class Snake implements Drawable {
         const head = this.parts[0];
         let [x, y] = [0, 0];
 
-        switch (+Direction) {
+        switch (this.direction) {
             case Direction.Up:
                 y = -VELOCITY;
                 break;
