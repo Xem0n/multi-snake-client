@@ -5,8 +5,12 @@ class Game extends HTMLElement implements Drawable {
     ctx: CanvasRenderingContext2D;
     snakes: Snake[];
 
+    static getInstance(): Game {
+        return document.querySelector('snake-game');
+    }
+
     static getContext(): CanvasRenderingContext2D {
-        const game: Game = document.querySelector('snake-game');
+        const game = this.getInstance();
 
         return game.ctx;
     }
