@@ -78,7 +78,7 @@ class Snake implements Drawable {
 
         const newPos: Point = {
             x: head.pos.x + x, 
-            y: head.pos.y + y
+            y: head.pos.y + y - (Part.size.y - VELOCITY)
         };
 
         return newPos;
