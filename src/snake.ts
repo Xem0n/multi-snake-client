@@ -10,7 +10,7 @@ class Snake implements Drawable {
     direction: Direction;
 
     constructor() {
-        this.direction = Direction.Up;
+        this.direction = Direction.Right;
 
         this.setupPositions();
         this.setupParts();
@@ -56,7 +56,7 @@ class Snake implements Drawable {
         let [x, y] = [0, 0];
 
         switch (this.direction) {
-            case Direction.Up:
+            case Direction.Up :
                 y = -VELOCITY;
                 break;
 
@@ -77,8 +77,8 @@ class Snake implements Drawable {
         }
 
         const newPos: Point = {
-            x: head.pos.x + x, 
-            y: head.pos.y + y - (Part.size.y - VELOCITY)
+            x: head.pos.x + x + (Part.size.x - VELOCITY) * (x / VELOCITY),
+            y: head.pos.y + y + (Part.size.y - VELOCITY) * (y / VELOCITY)
         };
 
         return newPos;
