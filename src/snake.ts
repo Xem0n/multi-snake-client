@@ -34,18 +34,12 @@ class Snake implements Drawable {
     }
 
     private setupParts(): void {
-        this.parts = [];
-
-        for (let i = 0; i < STARTING_LENGTH; i++) {
-            let x: number, y: number;
-            ({ x, y } = this.positions[i]);
-
-            this.parts.push(new Part({
-                    x: x,
-                    y: y
-                }, i === 0)
-            );
-        }
+        this.parts = this.positions.map((position: Point, index: number) => (
+            new Part({
+                x: position.x,
+                y: position.y
+            }, index === 0)
+        ));
     }
     
     move(): void {
