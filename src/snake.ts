@@ -85,15 +85,13 @@ class Snake implements Drawable {
     }
 
     private updateParts(): void {
-        for (let i = 0; i < this.parts.length; i++) {
-            this.parts[i].pos = this.positions[i];
-        }
+        this.parts.forEach((part: Part, index: number) => {
+            part.pos = this.positions[index];
+        });
     }
 
     draw(): void {
-        for (const part of this.parts) {
-            part.draw();
-        }
+        this.parts.forEach((part: Part) => part.draw());
     }
 }
 
