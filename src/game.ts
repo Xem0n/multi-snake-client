@@ -53,10 +53,8 @@ class Game extends HTMLElement implements Drawable {
 
     draw(): void {
         this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-        for (const snake of this.snakes) {
-            snake.draw();
-        }
+        
+        this.snakes.forEach((snake: Snake) => snake.draw());
     }
 }
 
