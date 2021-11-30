@@ -6,7 +6,8 @@
     "target": "es6",
     "allowJs": true,
     "moduleResolution": "node",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "sourceMap": true
   },
   "include": [
     "src"
