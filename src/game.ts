@@ -2,8 +2,11 @@ import Snake from './snake';
 import Input from './input';
 import { Drawable } from './types';
 
+const STARTING_SPEED = 500;
+
 class Game extends HTMLElement implements Drawable {
     ctx: CanvasRenderingContext2D;
+    speed: number;
     snakes: Snake[];
     started: boolean;
 
@@ -22,6 +25,7 @@ class Game extends HTMLElement implements Drawable {
 
         this.started = false;
         this.snakes = [];
+        this.speed = STARTING_SPEED;
 
         this.setupCanvas();
         window.onresize = this.setupCanvas.bind(this);
@@ -47,7 +51,7 @@ class Game extends HTMLElement implements Drawable {
         this.started = true;
         this.snakes.push(new Snake(true));
 
-        setInterval(this.loop.bind(this), 500);
+        this.loop();
     }
 
     show(): void {
@@ -57,6 +61,8 @@ class Game extends HTMLElement implements Drawable {
     loop(): void {
         this.think();
         this.draw();
+
+        setTimeout(() => this.loop(), this.speed);
     }
 
     think(): void {
