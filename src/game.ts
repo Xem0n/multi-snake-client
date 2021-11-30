@@ -1,4 +1,5 @@
 import Snake from './snake';
+import Input from './input';
 import { Drawable } from './types';
 
 class Game extends HTMLElement implements Drawable {
@@ -24,6 +25,8 @@ class Game extends HTMLElement implements Drawable {
 
         this.setupCanvas();
         window.onresize = this.setupCanvas.bind(this);
+        
+        Input.setup(this);
     }
 
     private setupCanvas(): void {
