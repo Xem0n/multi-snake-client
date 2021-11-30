@@ -15,6 +15,12 @@ class Game extends HTMLElement implements Drawable {
         return game.ctx;
     }
 
+    static getLocalSnake(): Snake {
+        const game = this.getInstance();
+
+        return game.snakes.find(snake => snake.local);
+    }
+
     constructor() {
         super();
 
