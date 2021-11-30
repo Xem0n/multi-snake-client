@@ -5,11 +5,13 @@ const STARTING_LENGTH = 5;
 const VELOCITY = 5;
 
 class Snake implements Drawable {
+    local: boolean;
     parts: Part[];
     positions: Point[];
     direction: Direction;
 
-    constructor() {
+    constructor(local = false) {
+        this.local = local;
         this.direction = Direction.Right;
 
         this.setupPositions();

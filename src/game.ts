@@ -35,7 +35,7 @@ class Game extends HTMLElement implements Drawable {
     start(ip: string, port: number): void {
         this.show();
 
-        this.snakes.push(new Snake());
+        this.snakes.push(new Snake(true));
 
         setInterval(this.loop.bind(this), 500);
     }
