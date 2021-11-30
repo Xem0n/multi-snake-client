@@ -57,9 +57,7 @@ class Game extends HTMLElement implements Drawable {
     }
 
     think(): void {
-        for (const snake of this.snakes) {
-            snake.move();
-        }
+        this.snakes.forEach(snake => snake.move());
     }
 
     draw(): void {
