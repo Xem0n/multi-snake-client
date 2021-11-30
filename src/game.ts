@@ -4,6 +4,7 @@ import { Drawable } from './types';
 class Game extends HTMLElement implements Drawable {
     ctx: CanvasRenderingContext2D;
     snakes: Snake[];
+    started: boolean;
 
     static getInstance(): Game {
         return document.querySelector('snake-game');
@@ -15,15 +16,10 @@ class Game extends HTMLElement implements Drawable {
         return game.ctx;
     }
 
-    static getLocalSnake(): Snake | undefined {
-        const game = this.getInstance();
-
-        return game.snakes.find(snake => snake.local);
-    }
-
     constructor() {
         super();
 
+        this.started = false;
         this.snakes = [];
 
         this.setupCanvas();
@@ -38,9 +34,14 @@ class Game extends HTMLElement implements Drawable {
         this.ctx = canvas.getContext('2d');
     }
 
+    getLocalSnake(): Snake | undefined {
+        return this.snakes.find(snake => snake.local);
+    }
+
     start(ip: string, port: number): void {
         this.show();
 
+        this.started = true;
         this.snakes.push(new Snake(true));
 
         setInterval(this.loop.bind(this), 500);
