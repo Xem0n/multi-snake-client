@@ -20,23 +20,7 @@ class Input {
         event.preventDefault();
 
         const direction = (<any>Direction)[event.code.slice(5)];
-
-        if (this.canTurn(direction)) {
-            const snake = this.game.getLocalSnake();
-            snake.direction = direction;
-        }
-    }
-
-    static canTurn(direction: Direction): boolean {
-        let curDirection = this.game.getLocalSnake()?.direction;
-
-        direction++;
-        curDirection++;
-
-        return (
-            (direction & 1) !==
-            (curDirection & 1)
-        );
+        this.game.getLocalSnake()?.turn(direction);
     }
 }
 

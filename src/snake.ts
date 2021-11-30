@@ -9,10 +9,12 @@ class Snake implements Drawable {
     parts: Part[];
     positions: Point[];
     direction: Direction;
+    alreadyTurned: boolean;
 
     constructor(local = false) {
         this.local = local;
         this.direction = Direction.Right;
+        this.alreadyTurned = false;
 
         this.setupPositions();
         this.setupParts();
@@ -43,6 +45,26 @@ class Snake implements Drawable {
             }, index === 0)
         ));
     }
+
+    turn(direction: Direction): void {
+        if (this.canTurn(direction)) {
+            this.direction = direction;
+            this.alreadyTurned = true;
+        }
+    }
+
+    canTurn(direction: Direction): boolean {
+        let curDirection = this.direction;
+
+        direction++;
+        curDirection++;
+
+        return (
+            (direction & 1) !==
+            (curDirection & 1) &&
+            !this.alreadyTurned
+        );
+    }
     
     move(): void {
         const newPos = this.getNewPos();
@@ -51,6 +73,8 @@ class Snake implements Drawable {
         this.positions.pop();
 
         this.updateParts();
+
+        this.alreadyTurned = false;
     }
 
     private getNewPos(): Point {
