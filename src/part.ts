@@ -3,8 +3,8 @@ import { Drawable, Point } from './types';
 
 class Part implements Drawable {
     static readonly size: Point = {
-        x: 40,
-        y: 40
+        x: 20,
+        y: 20
     };
 
     pos: Point;
