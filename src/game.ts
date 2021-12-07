@@ -3,6 +3,7 @@ import Input from './input';
 import { Drawable, GameTime } from './types';
 
 const STARTING_SPEED = 500;
+const MAX_DELTA = 50;
 
 class Game extends HTMLElement implements Drawable {
     ctx: CanvasRenderingContext2D;
@@ -57,24 +58,28 @@ class Game extends HTMLElement implements Drawable {
         this.snakes.push(new Snake(true));
 
         this.time.lastTimestamp = performance.now();
-        this.loop(this.time.lastTimestamp);
+        this.loop();
     }
 
     show(): void {
         this.style.display = 'flex';
     }
 
-    loop(timestamp: DOMHighResTimeStamp): void {
+    loop(timestamp?: DOMHighResTimeStamp): void {
+        window.requestAnimationFrame((timestamp: DOMHighResTimeStamp) => this.loop(timestamp));
+
+        if (!timestamp) {
+            return;
+        }
+
         this.updateTime(timestamp);
 
         this.think();
         this.draw();
-
-        window.requestAnimationFrame((timestamp: DOMHighResTimeStamp) => this.loop(timestamp));
     }
 
     private updateTime(timestamp: DOMHighResTimeStamp): void {
-        this.time.delta = timestamp - this.time.lastTimestamp;
+        this.time.delta = Math.min(timestamp - this.time.lastTimestamp, MAX_DELTA);
         this.time.lastTimestamp = timestamp;
     }
 
