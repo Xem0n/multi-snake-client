@@ -7,6 +7,11 @@ interface Point {
     y: number;
 }
 
+interface GameTime {
+    delta: DOMHighResTimeStamp;
+    lastTimestamp: DOMHighResTimeStamp;
+}
+
 enum Direction {
     Up,
     Left,
@@ -14,4 +19,4 @@ enum Direction {
     Right 
 }
 
-export { Drawable, Point, Direction };
+export { Drawable, Point, GameTime, Direction };

@@ -1,6 +1,6 @@
 import Snake from './snake';
 import Input from './input';
-import { Drawable } from './types';
+import { Drawable, GameTime } from './types';
 
 const STARTING_SPEED = 500;
 
@@ -9,6 +9,7 @@ class Game extends HTMLElement implements Drawable {
     speed: number;
     snakes: Snake[];
     started: boolean;
+    time: GameTime;
 
     static getInstance(): Game {
         return document.querySelector('snake-game');
@@ -26,6 +27,10 @@ class Game extends HTMLElement implements Drawable {
         this.started = false;
         this.snakes = [];
         this.speed = STARTING_SPEED;
+        this.time = {
+            delta: 0,
+            lastTimestamp: performance.now()
+        };
 
         this.setupCanvas();
         window.onresize = this.setupCanvas.bind(this);
@@ -51,18 +56,26 @@ class Game extends HTMLElement implements Drawable {
         this.started = true;
         this.snakes.push(new Snake(true));
 
-        this.loop();
+        this.time.lastTimestamp = performance.now();
+        this.loop(this.time.lastTimestamp);
     }
 
     show(): void {
         this.style.display = 'flex';
     }
 
-    loop(): void {
+    loop(timestamp: DOMHighResTimeStamp): void {
+        this.updateTime(timestamp);
+
         this.think();
         this.draw();
 
-        setTimeout(() => this.loop(), this.speed);
+        window.requestAnimationFrame((timestamp: DOMHighResTimeStamp) => this.loop(timestamp));
+    }
+
+    private updateTime(timestamp: DOMHighResTimeStamp): void {
+        this.time.delta = timestamp - this.time.lastTimestamp;
+        this.time.lastTimestamp = timestamp;
     }
 
     think(): void {
