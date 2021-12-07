@@ -1,8 +1,9 @@
+import Game from './game';
 import Part from './part';
 import { Drawable, Point, Direction } from './types';
 
-const STARTING_LENGTH = 5;
-const VELOCITY = 5;
+const STARTING_LENGTH = 50;
+const VELOCITY = 1;
 
 class Snake implements Drawable {
     local: boolean;
@@ -33,7 +34,7 @@ class Snake implements Drawable {
                 y: y
             });
 
-            y += Part.size.y;
+            y += VELOCITY;
         }
     }
 
@@ -81,21 +82,24 @@ class Snake implements Drawable {
         const head = this.parts[0];
         let [x, y] = [0, 0];
 
+        const delta = Game.getInstance().time.delta;
+        const velocity = (delta / 10) * VELOCITY;
+
         switch (this.direction) {
             case Direction.Up :
-                y = -VELOCITY;
+                y = -velocity;
                 break;
 
             case Direction.Down:
-                y = VELOCITY;
+                y = velocity;
                 break
 
             case Direction.Left:
-                x = -VELOCITY;
+                x = -velocity;
                 break;
 
             case Direction.Right:
-                x = VELOCITY;
+                x = velocity;
                 break;
 
             default:
@@ -103,8 +107,8 @@ class Snake implements Drawable {
         }
 
         const newPos: Point = {
-            x: head.pos.x + x + (Part.size.x - VELOCITY) * (x / VELOCITY),
-            y: head.pos.y + y + (Part.size.y - VELOCITY) * (y / VELOCITY)
+            x: head.pos.x + x,
+            y: head.pos.y + y
         };
 
         return newPos;
