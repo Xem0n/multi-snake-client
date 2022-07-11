@@ -80,31 +80,14 @@ class Snake implements Drawable {
 
     private getNewPos(): Point {
         const head = this.parts[0];
-        let [x, y] = [0, 0];
-
         const delta = Game.getInstance().time.delta;
         const velocity = (delta / 10) * VELOCITY;
 
-        switch (this.direction) {
-            case Direction.Up :
-                y = -velocity;
-                break;
+        let x = (this.direction == Direction.Right) ? velocity : 0;
+        x = (this.direction == Direction.Left) ? -velocity : x;
 
-            case Direction.Down:
-                y = velocity;
-                break
-
-            case Direction.Left:
-                x = -velocity;
-                break;
-
-            case Direction.Right:
-                x = velocity;
-                break;
-
-            default:
-                break;
-        }
+        let y = (this.direction == Direction.Down) ? velocity : 0;
+        y = (this.direction == Direction.Up) ? -velocity : y;
 
         const newPos: Point = {
             x: head.pos.x + x,
